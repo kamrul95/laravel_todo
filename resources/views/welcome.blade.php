@@ -82,7 +82,7 @@
             <div class="content">
                 <div class="title m-b-md">
                     <div class="links">
-                        <a href="{{route('todos')}}">Todos</a>
+                        <a href="{{route('todos')}}"><span style="font-size: large">Todos</span></a>
                     </div>
                 </div>
             </div>

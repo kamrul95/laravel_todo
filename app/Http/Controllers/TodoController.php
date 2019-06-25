@@ -24,7 +24,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
+        return view('todos.create');
     }
 
     /**
@@ -35,7 +35,18 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+           'name' => 'required',
+           'description' => 'required'
+        ]);
+        $data = $request->all();
+        $todo = new Todo();
+        $todo->name = $data['name'];
+        $todo->description = $data['description'];
+        $todo->completed = false;
+        $todo->save();
+
+        return redirect()->route('todos');
     }
 
     /**
