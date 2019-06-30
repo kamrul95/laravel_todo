@@ -15,7 +15,10 @@
                 <div class="card-body">
                     {{$todo->description}}
                 </div>
-
+                <div class="flex m-2">
+                    <a class="btn btn-success" href="{{route('todos.edit',['todo'=>$todo->id])}}">Edit</a>
+                    <a class="btn btn-danger" href="{{route('todos.destroy',['todo'=>$todo->id])}}">Delete</a>
+                </div>
             </div>
         </div>
     </div>

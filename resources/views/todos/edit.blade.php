@@ -2,6 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: mdkamrul
+ * Date: 6/29/2019
+ * Time: 8:38 PM
+ */
+?>
+
+<?php
+/**
+ * Created by PhpStorm.
+ * User: mdkamrul
  * Date: 6/26/2019
  * Time: 12:08 AM
  */
@@ -31,16 +40,16 @@
                         </div>
                     @endif
 
-                    <form method="post" action="{{route('todos.store')}}">
+                    <form method="post" action="{{route('todos.update',['todo'=>$todo])}}">
                         @csrf
                         <div class="form-group">
-                            <input type="text" class="form-control" name="name" placeholder="Give name">
+                            <input type="text" class="form-control" name="name" value="{{$todo->name}}">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="description" id="description" cols="5" rows="5" placeholder="Give description"></textarea>
+                            <textarea class="form-control" name="description" id="description" cols="5" rows="5">{{$todo->description}}</textarea>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">Create Todo</button>
+                            <button type="submit" class="btn btn-success">Update Todo</button>
                         </div>
                     </form>
                 </div>

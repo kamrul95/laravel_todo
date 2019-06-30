@@ -17,8 +17,14 @@
                         @foreach($todos as $todo)
                             <li class="list-group-item">
                                 {{$todo->name}}
-                                <a href="{{route('todos.show',['todo'=>$todo])}}"
-                                   class="btn btn-primary sm float-right">View</a>
+                                <div class="flex float-right">
+                                    @if(!$todo->completed)
+                                        <a href="{{route('todos.completed',['todo'=>$todo->id])}}"
+                                           class="btn btn-warning sm">Mark As Completed</a>
+                                    @endif
+                                    <a href="{{route('todos.show',['todo'=>$todo->id])}}"
+                                       class="btn btn-primary sm">View</a>
+                                </div>
                             </li>
                         @endforeach
                     </ul>

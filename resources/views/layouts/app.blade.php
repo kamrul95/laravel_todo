@@ -29,6 +29,16 @@
         </form>
     </div>
 </nav>
+
+@if(session()->has('success'))
+    <div class="row">
+        <div class="col-md-6 offset-md-3 alert alert-success">
+            {{session()->get('success')}}
+        </div>
+    </div>
+
+@endif
+
 <div class="container">
     @yield('content')
 </div>

@@ -45,7 +45,7 @@ class TodoController extends Controller
         $todo->description = $data['description'];
         $todo->completed = false;
         $todo->save();
-
+        session()->flash('success','Todo Created successfully');
         return redirect()->route('todos');
     }
 
@@ -68,7 +68,7 @@ class TodoController extends Controller
      */
     public function edit(Todo $todo)
     {
-        //
+        return view('todos.edit')->with('todo', $todo);
     }
 
     /**
@@ -80,7 +80,15 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
-        //
+        $request->validate([
+           'name' => 'required|min:4',
+            'description' => 'required'
+        ]);
+        $todo->name = $request->name;
+        $todo->description = $request->description;
+        $todo->save();
+        session()->flash('success','Todo Updated successfully');
+        return redirect()->route('todos');
     }
 
     /**
@@ -88,9 +96,20 @@ class TodoController extends Controller
      *
      * @param  \App\Todo $todo
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+        session()->flash('success','Todo Deleted successfully');
+        return redirect()->route('todos');
+    }
+
+    public function completed(Todo $todo)
+    {
+        $todo->completed = 1;
+        $todo->save();
+        session()->flash('success','Todo Completed successfully');
+        return redirect()->route('todos');
     }
 }
